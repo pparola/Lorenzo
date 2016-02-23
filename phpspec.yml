@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: Facturacion
+        psr4_prefix: Facturacion
+        src_path: app
