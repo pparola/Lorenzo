@@ -11,9 +11,15 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+Route::get(		'/', 					'WelcomeController@index' 	);
+Route::get(		'home', 				'HomeController@index'		);
 
-Route::get('home', 'HomeController@index');
+Route::get(		'repartos', 			'RepartoController@index'	);
+Route::get(		'repartos/create', 		'RepartoController@create'	);
+Route::post(	'repartos/create', 		'RepartoController@store'	);
+Route::get(		'repartos/edit/{id}', 	'RepartoController@edit'	);
+Route::post(	'repartos/edit/{id}', 	'RepartoController@update'	);
+Route::get(		'repartos/delete/{id}', 'RepartoController@destroy'	);
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
