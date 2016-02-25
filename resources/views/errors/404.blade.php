@@ -34,7 +34,7 @@
 	<body>
 		<div class="container">
 			<div class="content">
-				<div class="title">Servicio no Disponible Momentaneamente.</div>
+				<div class="title">Recurso no Encontrado.</div>
 			</div>
 		</div>
 	</body>

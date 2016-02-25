@@ -8,7 +8,7 @@
 				<div class="panel-heading">Home</div>
 
 				<div class="panel-body">
-					Biemvenido al sistema de Facturacion
+					Bienvenido al sistema de Facturacion
 
 
 					<div class="dropdown">
@@ -20,6 +20,10 @@
 
 					    	<li>
 					    		<a href="{{ url('repartos') }}">Actualizar Repartos</a>
+				    		</li>
+
+					    	<li>
+					    		<a href="{{ url('articulos') }}">Actualizar Articulos</a>
 				    		</li>
 
 					    	<li role="separator" class="divider"></li>

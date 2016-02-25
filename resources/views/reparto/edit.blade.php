@@ -24,7 +24,7 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label">Nombre</label>
 							<div class="col-md-6">
-								<input type="text" class="form-control" name="nombre" value="{{ $reparto->nombre }}">
+								<input type="text" class="form-control" name="nombre" maxlength="32" value="{{ $reparto->nombre }}">
 							</div>
 						</div>
 
