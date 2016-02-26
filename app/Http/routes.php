@@ -28,6 +28,9 @@ Route::get(		'articulos/edit/{id}', 		'ArticuloController@edit'		);
 Route::post(	'articulos/edit/{id}', 		'ArticuloController@update'		);
 Route::get(		'articulos/delete/{id}',	'ArticuloController@destroy'	);
 
+Route::get(		'clientes', 				'ClienteController@index'		);
+Route::get(		'clientes/create',			'ClienteController@create'		);
+Route::post(	'clientes/create', 			'ClienteController@store'		);
 
 Route::controllers([ 
 	'auth' => 'Auth\AuthController', 

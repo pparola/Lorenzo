@@ -19,12 +19,16 @@
 					  	<ul class="dropdown-menu" aria-labelledby="dropdown">
 
 					    	<li>
-					    		<a href="{{ url('repartos') }}">Actualizar Repartos</a>
+					    		<a href="{{ url('articulos') }}">Actualizar Articulos</a>
 				    		</li>
 
 					    	<li>
-					    		<a href="{{ url('articulos') }}">Actualizar Articulos</a>
+					    		<a href="{{ url('clientes') }}">Actualizar Clientes</a>
 				    		</li>
+					    	<li>
+					    		<a href="{{ url('repartos') }}">Actualizar Repartos</a>
+				    		</li>
+
 
 					    	<li role="separator" class="divider"></li>
 

@@ -31,4 +31,11 @@ class Cliente extends Model {
 
 
 
+	public function scopeBnombre ($query, $nombre)
+	{
+		if(trim($nombre)!="")
+		{
+			$query->where("nombre", "LIKE", "%$nombre%" );
+		}
+	}
 }
