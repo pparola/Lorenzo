@@ -3,8 +3,11 @@
 use Facturacion\Http\Requests;
 use Facturacion\Http\Controllers\Controller;
 
+use Facturacion\Http\Requests\CreateClienteRequest;
+
 use Illuminate\Http\Request;
 use Facturacion\Cliente;
+use Facturacion\Reparto;
 
 class ClienteController extends Controller {
 
@@ -28,7 +31,8 @@ class ClienteController extends Controller {
 	 */
 	public function create()
 	{
-		return view('Cliente.Create');
+		$repartos = Reparto::All();
+		return view('Cliente.Create', [ 'repartos' => $repartos ]);
 	}
 
 	/**
@@ -36,9 +40,22 @@ class ClienteController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(CreateClienteRequest $request)
 	{
-		//
+		Cliente::Create(
+			[
+				'codigo' 	=> strtoupper( $request->get('codigo')),
+				'nombre' 	=> strtoupper( $request->get('nombre')),
+				'direccion' => strtoupper( $request->get('direccion')),
+				'localidad'	=> strtoupper( $request->get('localidad')),
+				'codpos'    => strtoupper( $request->get('codpos')),
+				'telefono'  => strtoupper( $request->get('telefono')),
+				'tipiva' 	=> strtoupper( $request->get('tipiva')),
+				'cuit' 		=> strtoupper( $request->get('cuit')),
+				'idreparto' => strtoupper( $request->get('idreparto')),
+			]
+		);
+		return redirect('/clientes')->with('mensaje', 'Se agrego el cliente correctamente');
 	}
 
 	/**
@@ -60,8 +77,10 @@ class ClienteController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
-	}
+		$repartos = Reparto::All();
+		$cliente = Cliente::find($id);
+			return view('Cliente.edit' ,['cliente'=>$cliente, 'repartos'=>$repartos]);
+		}
 
 	/**
 	 * Update the specified resource in storage.

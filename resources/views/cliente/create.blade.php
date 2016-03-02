@@ -18,7 +18,7 @@
 						</div>
 					@endif
 
-					<form class="form-horizontal" role="form" method="POST" action="/repartos/create">
+					<form class="form-horizontal" role="form" method="POST" action="/clientes/create">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="form-group">
@@ -60,18 +60,32 @@
 						</div>
 
 						<div class="form-group">
+							<label class="col-md-4 control-label">Tipo Iva</label>
+							<div class="col-md-6">
+								<select class="form-control" name="tipiva">
+									<option value="1">Responsable Inscripto</option>
+									<option value="2">Responsable Monotributo</option>
+
+								</select>
+
+							</div>
+						</div>
+
+						<div class="form-group">
 							<label class="col-md-4 control-label">Cuit</label>
 							<div class="col-md-6">
 								<input type="text" class="form-control" name="cuit" maxlength="13" value="{{ old('cuit') }}">
 							</div>
 						</div>
 
+
 						<div class="form-group">
-							<label class="col-md-4 control-label">Tipo Iva</label>
+							<label class="col-md-4 control-label">Reparto</label>
 							<div class="col-md-6">
-								<select class="form-control" name="tipiva">
-									<option value="1">Responsable Inscripto</option>
-									<option value="2">Responsable Monotributo</option>
+								<select class="form-control" name="idreparto">
+									@foreach ($repartos as $reparto)
+										<option value="{{ $reparto->id }}">{{ $reparto->nombre }}</option>
+									@endforeach
 
 								</select>
 
