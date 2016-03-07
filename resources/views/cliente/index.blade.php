@@ -1,18 +1,17 @@
-@extends('app')
+@extends('master')
 
 @section('content')
-<div class="container-fluid">
-	<div class="row">
 
-		<div class="col-md-8 col-md-offset-2">
+	@if(Session::has('mensaje'))
+		<div class="alert alert-success">
+			<p>{{ Session::get('mensaje') }}</p>
+		</div>
+	@endif
 
-			@if(Session::has('mensaje'))
-				<div class="alert alert-success">
-					<p>{{ Session::get('mensaje') }}</p>
-				</div>
-			@endif
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
 
-			<div class="panel panel-default">
+			<div class="panel panel-primary">
 				<div class="panel-heading">Clientes</div>
 				<div class="panel-body">
 
@@ -39,7 +38,7 @@
 									<td align="right">
 										<a href="{{ url("clientes/edit/$cliente->id") }}" class="btn btn-info btn-xs">Actualizar</a>
 										<a href="{{ url("clientes/delete/$cliente->id") }}" class="btn btn-info btn-xs">Eliminar</a>
-									<td>
+									</td>
 								</tr>
 
 							@endforeach
@@ -56,10 +55,8 @@
 					{!! $clientes->render() !!} 
 					</p>
 					<a href="{{ url('clientes/create') }}" class="btn btn-info">Agregar</a>
-
-				<div>
-			<div>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
 @endsection

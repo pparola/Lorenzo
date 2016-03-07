@@ -1,18 +1,17 @@
-@extends('app')
+@extends('master')
 
 @section('content')
-<div class="container-fluid">
-	<div class="row">
 
-		<div class="col-md-8 col-md-offset-2">
+	@if(Session::has('mensaje'))
+		<div class="alert alert-success">
+			<p>{{ Session::get('mensaje') }}</p>
+		</div>
+	@endif
 
-			@if(Session::has('mensaje'))
-				<div class="alert alert-success">
-					<p>{{ Session::get('mensaje') }}</p>
-				</div>
-			@endif
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
 
-			<div class="panel panel-default">
+			<div class="panel panel-primary">
 				<div class="panel-heading">Repartos</div>
 				<div class="panel-body">
 
@@ -32,7 +31,7 @@
 									<td align="right">
 										<a href="{{ url("repartos/edit/$reparto->id") }}" class="btn btn-info btn-xs">Actualizar</a>
 										<a href="{{ url("repartos/delete/$reparto->id") }}" class="btn btn-info btn-xs">Eliminar</a>
-									<td>
+									</td>
 								</tr>
 
 							@endforeach
@@ -47,9 +46,9 @@
 					@endif
 					<a href="{{ url('repartos/create') }}" class="btn btn-info">Agregar</a>
 
-				<div>
-			<div>
+				</div>
+			</div>
 		</div>
-	</div>
+	<div>
 </div>
 @endsection
