@@ -4,10 +4,12 @@ use Facturacion\Http\Requests;
 use Facturacion\Http\Controllers\Controller;
 
 use Facturacion\Http\Requests\CreateClienteRequest;
+use Facturacion\Http\Requests\EditClienteRequest;
 
 use Illuminate\Http\Request;
 use Facturacion\Cliente;
 use Facturacion\Reparto;
+use Facturacion\Movimiento;
 
 class ClienteController extends Controller {
 
@@ -20,7 +22,7 @@ class ClienteController extends Controller {
 	{
 
 		$nombre = $request->get('nombre');
-		$clientes = Cliente::bnombre($nombre)->paginate(10);
+		$clientes = Cliente::bnombre($nombre)->paginate(8);
 		return view('Cliente.Index',[ 'clientes' => $clientes, 'nombre'=>$nombre]);
 	}
 
@@ -55,7 +57,7 @@ class ClienteController extends Controller {
 				'idreparto' => strtoupper( $request->get('idreparto')),
 			]
 		);
-		return redirect('/clientes')->with('mensaje', 'Se agrego el cliente correctamente');
+		return redirect('/cliente')->with('mensaje', 'Se agrego el cliente correctamente');
 	}
 
 	/**
@@ -88,9 +90,21 @@ class ClienteController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, EditClienteRequest $request)
 	{
-		//
+		$cliente = Cliente::find($id);
+		$cliente->nombre 		= strtoupper( $request->get('nombre')) ;
+		$cliente->direccion 	= strtoupper( $request->get('direccion')) ;
+		$cliente->localidad 	= strtoupper( $request->get('localidad')) ;
+		$cliente->codpos 		= strtoupper( $request->get('codpos')) ;
+		$cliente->telefono 		= strtoupper( $request->get('telefono')) ;
+		$cliente->tipiva 		= strtoupper( $request->get('tipiva')) ;
+		$cliente->cuit  		= strtoupper( $request->get('cuit')) ;
+		$cliente->idreparto		= strtoupper( $request->get('idreparto')) ;
+
+		$cliente->save();
+
+		return redirect('/clientes')->with('mensaje', 'Se actualizo el cliente correctamente');
 	}
 
 	/**
@@ -101,7 +115,16 @@ class ClienteController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+
+		$movimientos = Movimiento::where('idcliente', '=', $id)->get();
+
+		if( sizeof($movimientos) === 0){
+			Cliente::destroy($id);
+			return redirect('/clientes')->with('mensaje', 'Se eliminado el cliente correctamente');
+		}else{
+			return redirect('/clientes')->with('mensaje', 'No se puede eliminar un cliente con Comprobantes');
+		}
+
 	}
 
 }

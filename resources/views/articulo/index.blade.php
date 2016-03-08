@@ -9,7 +9,7 @@
 	@endif
 
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-8 col-md-offset-2">
 
 			<div class="panel panel-primary">
 				<div class="panel-heading">Articulos</div>
@@ -21,6 +21,7 @@
 							<tr class="warning">
 								<th>codigo</th>
 								<th>Nombre</th>
+								<th>Precio</th>
 								<th align="right">Acciones</th>
 							</tr>
 
@@ -28,6 +29,7 @@
 								<tr>
 									<td>{{ $articulo->codigo }}</td>
 									<td>{{ $articulo->nombre }}</td>
+									<td>{{ $articulo->precio }}</td>
 									<td align="right">
 										<a href="{{ url("articulos/edit/$articulo->id") }}" class="btn btn-info btn-xs">Actualizar</a>
 										<a href="{{ url("articulos/delete/$articulo->id") }}" class="btn btn-info btn-xs">Eliminar</a>

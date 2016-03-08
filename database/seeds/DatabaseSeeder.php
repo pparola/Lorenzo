@@ -68,17 +68,17 @@ class DatabaseSeeder extends Seeder {
 
 		Articulo::Truncate();
 
-		Articulo::Create(['codigo' => '0001', 'nombre' => '1/2 RES']);
-		Articulo::Create(['codigo' => '0002', 'nombre' => 'BOCHA']);
-		Articulo::Create(['codigo' => '0003', 'nombre' => 'PECHO']);
-		Articulo::Create(['codigo' => '0004', 'nombre' => 'DELANTERO']);
-		Articulo::Create(['codigo' => '0005', 'nombre' => 'ASADO']);
-		Articulo::Create(['codigo' => '0006', 'nombre' => 'MOCHOS']);
-		Articulo::Create(['codigo' => '0007', 'nombre' => 'ABASTO']);
-		Articulo::Create(['codigo' => '0008', 'nombre' => 'BIFES']);
-		Articulo::Create(['codigo' => '0009', 'nombre' => 'PISTOLA']);
-		Articulo::Create(['codigo' => '0010', 'nombre' => 'RECORTES']);
-		Articulo::Create(['codigo' => '0011', 'nombre' => 'STOCK DIAS ANTERIORES']);
+		Articulo::Create(['codigo' => '0001', 'nombre' => '1/2 RES', 'precio'=> 10.32 ]);
+		Articulo::Create(['codigo' => '0002', 'nombre' => 'BOCHA'  , 'precio'=> 12.44 ]);
+		Articulo::Create(['codigo' => '0003', 'nombre' => 'PECHO' , 'precio'=> 5.4 ]);
+		Articulo::Create(['codigo' => '0004', 'nombre' => 'DELANTERO' , 'precio'=> 33.22 ]);
+		Articulo::Create(['codigo' => '0005', 'nombre' => 'ASADO',  'precio'=> 36.11 ]);
+		Articulo::Create(['codigo' => '0006', 'nombre' => 'MOCHOS',  'precio'=> 66.32 ]);
+		Articulo::Create(['codigo' => '0007', 'nombre' => 'ABASTO', 'precio'=> 99.02 ]);
+		Articulo::Create(['codigo' => '0008', 'nombre' => 'BIFES', 'precio'=> 3.77 ]);
+		Articulo::Create(['codigo' => '0009', 'nombre' => 'PISTOLA', 'precio'=> 1.44 ]);
+		Articulo::Create(['codigo' => '0010', 'nombre' => 'RECORTES', 'precio'=> 0.87 ]);
+		Articulo::Create(['codigo' => '0011', 'nombre' => 'STOCK DIAS ANTERIORES', 'precio'=> 1 ]);
 
 
 		//$this->call('MovimientosSeeder');

@@ -42,7 +42,8 @@ class ArticuloController extends Controller {
 	{
 		Articulo::Create(
 			[ 'nombre' => strtoupper( $request->get('nombre')),
-			  'codigo' => strtoupper( $request->get('codigo')) ]
+			  'codigo' => strtoupper( $request->get('codigo')),
+			  'precio' => $request->get('precio') ]
 		);
 		return redirect('/articulos')->with('mensaje', 'Se agrego el articulo correctamente');
 	}
@@ -81,6 +82,7 @@ class ArticuloController extends Controller {
 	{
 		$articulo = Articulo::find($id);
 		$articulo->nombre = strtoupper( $request->get('nombre')) ;
+		$articulo->precio = $request->get('precio') ;
 		$articulo->save();
 		return redirect('/articulos')->with('mensaje', 'Se actualizo el articulo correctamente');
 

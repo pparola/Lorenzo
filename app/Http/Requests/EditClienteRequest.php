@@ -2,7 +2,7 @@
 
 use Facturacion\Http\Requests\Request;
 
-class CreateArticuloRequest extends Request {
+class EditClienteRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -22,9 +22,9 @@ class CreateArticuloRequest extends Request {
 	public function rules()
 	{
 		return [
-			'codigo' => 'required|unique:articulos|numeric',
-			'nombre' => 'required',
-			'precio' => 'required|numeric'
+			'nombre' 	=> 'required|unique:clientes',
+			'tipiva' 	=> 'required',
+			'idreparto' => 'exists:repartos,id',
 		];
 	}
 

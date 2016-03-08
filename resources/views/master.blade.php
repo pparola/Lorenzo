@@ -140,8 +140,9 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-
+                        <p>
 					    @yield('content')
+                        </p>
 
                     </div>
                     <!-- /.col-lg-12 -->

@@ -12,15 +12,9 @@ class Articulo extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('articulos', function(Blueprint $table)
+		Schema::table('articulos', function($table)
 		{
-
-			$table->engine = 'MyISAM';
-			$table->increments('id');
-			$table->string('codigo', 4)->unique();
-			$table->string('nombre',32);
-			$table->decimal('precio',12,2);
-
+    		$table->decimal('precio', 10, 2 );
 		});
 	}
 
@@ -31,7 +25,9 @@ class Articulo extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('articulos');
+		Schema::table('articulos', function($table)
+		{
+		    $table->dropColumn(['precio']);
+		});
 	}
-
 }

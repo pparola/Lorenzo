@@ -19,7 +19,8 @@ class Articulo extends Model {
 	 * @var array
 	 */
 	protected $fillable = [ 'codigo',
-							'nombre' ];
+							'nombre',
+							'precio' ];
 
 
 

@@ -33,6 +33,7 @@ Route::get(		'clientes/create',			'ClienteController@create'		);
 Route::post(	'clientes/create', 			'ClienteController@store'		);
 Route::get(		'clientes/edit/{id}', 		'ClienteController@edit'		);
 Route::post(	'clientes/edit/{id}', 		'ClienteController@update'		);
+Route::get(		'clientes/delete/{id}',		'ClienteController@destroy'	);
 
 Route::controllers([ 
 	'auth' => 'Auth\AuthController', 

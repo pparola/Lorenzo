@@ -22,7 +22,8 @@ class EditArticuloRequest extends Request {
 	public function rules()
 	{
 		return [
-			'nombre' => 'required'
+			'nombre' => 'required',
+			'precio' => 'required|numeric'
 		];
 	}
 

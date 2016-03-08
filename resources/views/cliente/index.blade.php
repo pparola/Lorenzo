@@ -9,7 +9,7 @@
 	@endif
 
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-8 col-md-offset-2">
 
 			<div class="panel panel-primary">
 				<div class="panel-heading">Clientes</div>
@@ -51,10 +51,13 @@
 							</p>
 						</div>
 					@endif
-					<p>
-					{!! $clientes->render() !!} 
-					</p>
-					<a href="{{ url('clientes/create') }}" class="btn btn-info">Agregar</a>
+					
+					<table class="table table-condensed" >
+					<tr>
+					<td align="left"><a href="{{ url('clientes/create') }}" class="btn btn-info">Agregar</a></td>
+					<td align="right">{!! $clientes->render() !!} </td>
+					</tr>
+					</table>
 				</div>
 			</div>
 		</div>
