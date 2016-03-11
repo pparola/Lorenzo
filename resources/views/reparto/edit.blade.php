@@ -19,7 +19,7 @@
 						</div>
 					@endif
 
-					<form class="form-horizontal" role="form" method="POST" action="/repartos/edit/{{ $reparto->id }}" >
+					<form class="form-horizontal" role="form" method="POST" action="{{ url('repartos/edit') }}/{{ $reparto->id }}" >
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="form-group">

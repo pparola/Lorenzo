@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('content')
-	<div class="panel panel-default">
+	<div class="panel panel-primary">
 		<div class="panel-heading">Agregar Articulo</div>
 		<div class="panel-body">
 			@if (count($errors) > 0)
@@ -15,7 +15,7 @@
 				</div>
 			@endif
 
-			<form class="form-horizontal" role="form" method="POST" action="/articulos/create">
+			<form class="form-horizontal" role="form" method="POST" action="{{ url('articulos/create') }}">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 				<div class="form-group">

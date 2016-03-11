@@ -14,6 +14,8 @@
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('assets/bower_components/bootstrap/dist/css/bootstrap.min.css')}}" rel='stylesheet' type='text/css' />
 
+    <link href="{{ asset('assets/bower_components/bootstrap/dist/css/bootstrap-datetimepicker.min.css')}}" rel='stylesheet' type='text/css' />
+
     <!-- MetisMenu CSS -->
     <link href="{{ asset('assets/bower_components/metisMenu/dist/metisMenu.min.css')}}" rel="stylesheet">
 
@@ -22,6 +24,9 @@
 
     <!-- Custom Fonts -->
     <link href="{{ asset('assets/bower_components/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+
+    <!-- jQuery -->
+    <script src="{{ asset('assets/bower_components/jquery/dist/jquery.min.js')}}"></script>
 
 </head>
 
@@ -88,46 +93,19 @@
 
 
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i>Ventas</a>
-                        </li>
-
-                        <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i>Compras<span class="fa arrow"></span></a>
+                            <a href=""><i class="fa fa-edit fa-fw"></i>Movimientos<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+
                                 <li>
-                                    <a href="panels-wells.html">Panels and Wells</a>
+                                    <a href="{{ url('createfacturaventa') }}">Factura de Venta</a>
                                 </li>
-                                <li>
-                                    <a href="buttons.html">Buttons</a>
-                                </li>
-                                <li>
-                                    <a href="notifications.html">Notifications</a>
-                                </li>
-                                <li>
-                                    <a href="typography.html">Typography</a>
-                                </li>
-                                <li>
-                                    <a href="icons.html"> Icons</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grid</a>
-                                </li>
+
+
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
 
-                        <li class="active">
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a class="active" href="blank.html">Blank Page</a>
-                                </li>
-                                <li>
-                                    <a href="login.html">Login Page</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -154,13 +132,10 @@
         <!-- /#page-wrapper -->
 
     </div>
-    <!-- /#wrapper -->
-
-    <!-- jQuery -->
-    <script src="{{ asset('assets/bower_components/jquery/dist/jquery.min.js')}}"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ asset('assets/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/bower_components/bootstrap/dist/js/bootstrap-datetimepicker.min.js') }}"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="{{ asset('assets/bower_components/metisMenu/dist/metisMenu.min.js') }}"></script>

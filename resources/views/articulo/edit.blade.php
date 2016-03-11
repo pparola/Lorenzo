@@ -1,7 +1,8 @@
 @extends('master')
 
 @section('content')
-	<div class="panel panel-default">
+
+	<div class="panel panel-primary">
 		<div class="panel-heading">Actualizar Articulo {{ $articulo->id }}</div>
 		<div class="panel-body">
 			@if (count($errors) > 0)
@@ -15,12 +16,12 @@
 				</div>
 			@endif
 
-			<form class="form-horizontal" role="form" method="POST" action="/articulos/edit/{{ $articulo->id }}" >
+			<form class="form-horizontal" role="form" method="POST" action="{{ url('articulos/edit') }}/{{ $articulo->id }}" >
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 				<div class="form-group">
 					<label class="col-md-4 control-label">Codigo</label>
-					<div class="col-md-6">
+					<div class="col-md-2">
 						<input type="text" class="form-control" name="codigo" maxlength="4" value="{{ $articulo->codigo }}" readonly >
 					</div>
 				</div>
@@ -34,7 +35,7 @@
 
 				<div class="form-group">
 					<label class="col-md-4 control-label">Precio</label>
-					<div class="col-md-6">
+					<div class="col-md-2">
 						<input type="text" class="form-control" name="precio" maxlength="10" value="{{ $articulo->precio }}">
 					</div>
 				</div>
