@@ -36,6 +36,7 @@ Route::post(	'clientes/edit/{id}', 			'ClienteController@update'		);
 Route::get(		'clientes/delete/{id}',			'ClienteController@destroy'		);
 
 Route::get(		'createfacturaventa',			'MovimientoController@createFacturaVenta');
+Route::post(	'createfacturaventa',			'MovimientoController@storeFacturaVenta');
 
 Route::controllers([ 
 	'auth' => 'Auth\AuthController', 

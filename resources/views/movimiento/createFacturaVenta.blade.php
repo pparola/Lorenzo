@@ -10,14 +10,13 @@
 				var parcial = $(this).val()-0;
 				t = t + parcial;
 			});
-			t = round( t * 100)/100;
+			//t = round( t * 100)/100;
 			$('.totalgeneral').val(t);
 		};
 
 		$(function(){
 
 			$(":input:visible:first").focus();
-			//$('#idcliente').focus();
 
 			$('.agregar').click(function(){
 
@@ -29,7 +28,7 @@
 							'<td> <select class="articulo form-control" name="idarticulo[]">' + articulos  + '</select> </td>' +
 							'<td> <input type="text" class="cantidad form-control" name="cantidad[]"></input> 			</td>' +
 							'<td> <input type="text" class="precio form-control" name="precio[]"></input>     			</td>' +
-							'<td> <input type="text" class="total form-control" name="total[]" disabled></input> 		</td>' +
+							'<td> <input type="text" class="total form-control" name="total[]" readonly></input> 		</td>' +
 							'<td> <input type="button" class="btn btn-danger eliminar" value="-"></input>   			</td>' +
 							'<tr>' ;
 
@@ -50,7 +49,7 @@
 				var tr = $(this).parent().parent();
 				var precio = tr.find('.articulo option:selected').attr('data-precio');
 				tr.find('.precio').val(precio);
-				totalgeneral()
+				totalgeneral();
 			});
 
 			$('.detalle').delegate('.cantidad,.precio','keyup',function(){
@@ -64,6 +63,7 @@
 
 
 		});
+
 
 	</script>
 
@@ -81,7 +81,7 @@
 				</div>
 			@endif
 
-			<form class="form-horizontal" role="form" method="POST" action="{{  url('createfacturaventa')  }}" >
+			<form  id="myform" class="form-horizontal" role="form" method="POST" action="{{  url('createfacturaventa')  }} >
 
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -125,7 +125,7 @@
 							Articulo
 						</th>
 						<th class="col-md-1">
-							Cantidad
+							Peso
 						</th>
 						<th class="col-md-1">
 							Precio
@@ -151,16 +151,16 @@
 								</select>
 							</td>
 
-							<td> <input type="text" class="cantidad form-control" name="cantidad[]"></input> </td>
-							<td> <input type="text" class="precio form-control" name="precio[]"></input>     </td>
-							<td> <input type="text" class="total form-control" name="total[]" disabled></input>       </td>
-							<td> <input type="button" class="btn btn-danger eliminar" value="-"></input> 	 </td>
+							<td> <input type="text" class="cantidad form-control" name="cantidad[]"></input> 	</td>
+							<td> <input type="text" class="precio form-control" name="precio[]"></input>     	</td>
+							<td> <input type="text" class="total form-control" name="total[]" readonly></input>       </td>
+							<td> <input type="button" class="btn btn-danger eliminar" value="-"></input> 	 	</td>
 						</tr>
 					</tbody>
 					<tfoot>
 						<th><input type="button" class="agregar btn btn-success " value="+" /></th>
 						<th colspan="3">Total:</th>
-						<th><input type="text" class="totalgeneral form-control" name="totalgeneral" disabled></input></th>
+						<th><input type="text" class="totalgeneral form-control" name="totalgeneral" readonly></input></th>
 					</tfoot>
 				</table>
 
@@ -171,6 +171,7 @@
 						</button>
 					</div>
 				</div>
+
 			</form>
 		</div>
 	</div>

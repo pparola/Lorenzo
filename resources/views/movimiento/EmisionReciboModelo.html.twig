@@ -1,0 +1,198 @@
+{% extends '::base.html.twig' %}
+
+{% block js %}
+   <script type="text/javascript" src="{{ asset('js/libs/FileSaver.js/FileSaver.js') }}"></script>
+   <script type="text/javascript" src="{{ asset('js/libs/Blob.js/Blob.js') }}"></script>
+   <script type="text/javascript" src="{{ asset('js/libs/Blob.js/BlobBuilder.js') }}"></script>
+   <script type="text/javascript" src="{{ asset('js/libs/Deflate/deflate.js') }}"></script>
+   <script type="text/javascript" src="{{ asset('js/libs/Deflate/adler32cs.js') }}"></script>
+
+   <script type="text/javascript" src="{{ asset('js/jspdf.js') }}"></script>
+   <script type="text/javascript" src="{{ asset('js/jspdf.plugin.addimage.js') }}"></script>
+   <script type="text/javascript" src="{{ asset('js/jspdf.plugin.cell.js') }}"></script>
+   <script type="text/javascript" src="{{ asset('js/jspdf.plugin.from_html.js') }}"></script>
+   <script type="text/javascript" src="{{ asset('js/jspdf.plugin.ie_below_9_shim.js') }}"></script>
+   <script type="text/javascript" src="{{ asset('js/jspdf.plugin.javascript.js') }}"></script>
+   <script type="text/javascript" src="{{ asset('js/jspdf.plugin.sillysvgrenderer.js') }}"></script>
+   <script type="text/javascript" src="{{ asset('js/jspdf.plugin.split_text_to_size.js') }}"></script>
+   <script type="text/javascript" src="{{ asset('js/jspdf.plugin.standard_fonts_metrics.js') }}"></script>
+   <script type="text/javascript" src="{{ asset('js/jspdf.PLUGINTEMPLATE.js') }}"></script>
+
+   <script>
+      $(function() {
+        ejecutar(); 
+      });
+   </script>
+
+{% endblock %}
+
+
+{% block titulo %}
+   <h1>Recibo</h1>
+   <p class="lead">Recibo {{recibo.codigo}} </p>
+   <p class="lead">Usuario {{usuario.username}} - Empresa {{empresa.nombre }} - Comercio: {{comercio.codcomercio}} {{comercio.nombre}} </p>
+{% endblock %}
+
+
+{% block body %}
+      
+   <iframe id="preview-pane" class="preview-pane" width="640" height="480" frameborder="1"> A visualizar </iframe>
+
+   <br>
+   
+   <div class="btn-group">
+      <a href="{{ path('mostrar', { 'numero': clienteFrm.numero, 'tipo':'0' } ) }}" class="btn btn-default btn-primary" >Volver a Operaciones</a>                     
+   </div>                  
+
+   
+   
+   <script>
+
+      function ejecutar() {
+
+         var doc = new jsPDF("l", "mm", "a5" );
+
+         doc.setFontSize(10);
+
+         doc.rect(5,5,98,125,'fill');
+         doc.rect(105,5,98,125,'fill');
+
+         doc.rect(5,5,98,10,'fill');
+         doc.rect(105,5,98,10,'fill');
+
+         doc.setFontSize(14);
+         doc.text(10,10, 'Comercio: {{comercio.nombre}}');
+         doc.text(110,10,'Comercio: {{comercio.nombre}}');
+
+         doc.setFontSize(9);
+         doc.text(10,14, '{{empresa.nombre}} - {{comercio.codComercio}}');
+         doc.text(110,14,'{{empresa.nombre}} - {{comercio.codComercio}}');
+
+         doc.text(80,14, '--{{recibo.tipo}}--');
+         doc.text(180,14,'--{{recibo.tipo}}--');
+
+         doc.setFontSize(10);
+
+         doc.text(10,20,   'CLIENTE:');
+         doc.text(110,20,  'CLIENTE:');
+
+         doc.text(45,20,   '{{clienteFrm.numero}}');
+         doc.text(145,20,  '{{clienteFrm.numero}}');
+
+         doc.text(10,25,   '{{clienteFrm.nombre}}');
+         doc.text(110,25,  '{{clienteFrm.nombre}}');
+
+         doc.text(10,30,   'CREDITO:');
+         doc.text(110,30,  'CREDITO:');
+
+         doc.text(45,30,   '{{recibo.prestam}}');
+         doc.text(145,30,  '{{recibo.prestam}}');
+
+         doc.text(10,35,   'RECIBO:');
+         doc.text(110,35,  'RECIBO:');
+
+         doc.text(45,35,   '{{recibo.codigo}}');
+         doc.text(145,35,  '{{recibo.codigo}}');
+
+         doc.text(10,40,   'PLAN:');
+         doc.text(110,40,  'PLAN:');
+
+         doc.text(10,45,   '{{recibo.plan}}');
+         doc.text(110,45,  '{{recibo.plan}}');
+
+         doc.text(10,50,   'FECHA DE PAGO:');
+         doc.text(110,50,  'FECHA DE PAGO:');
+
+         doc.text(45,50,   '{{recibo.fecha}}');
+         doc.text(145,50,  '{{recibo.fecha}}');
+
+         doc.rect(10,52,88,50,'fill');
+         doc.rect(110,52,88,50,'fill');
+
+         doc.text(15,60,   'PAGO DE LA CTA NRO:');
+         doc.text(115,60,  'PAGO DE LA CTA NRO:');
+
+         doc.text(75,60,   '{{recibo.cuota}}');
+         doc.text(175,60,  '{{recibo.cuota}}');
+
+         doc.text(15,65,   'FECHA DE VENCIMIENTO:');
+         doc.text(115,65,  'FECHA DE VENCIMIENTO:');
+
+         doc.text(75,65,   '{{recibo.vencim}}');
+         doc.text(175,65,  '{{recibo.vencim}}');
+
+         doc.text(15,75,   'IMPORTE DE LA CUOTA:');
+         doc.text(115,75,  'IMPORTE DE LA CUOTA:');
+
+         doc.text(75,75,   '{{recibo.importe}}');
+         doc.text(175,75,  '{{recibo.importe}}');
+
+         doc.text(15,80,   'PUNITORIOS:');
+         doc.text(115,80,  'PUNITORIOS:');
+
+         doc.text(75,80,   '{{recibo.netopun}}');
+         doc.text(175,80,  '{{recibo.netopun}}');
+
+         doc.text(15,85,   'GASTOS:');
+         doc.text(115,85,  'GASTOS:');
+
+         doc.text(75,85,   '{{recibo.gastos}}');
+         doc.text(175,85,  '{{recibo.gastos}}');
+
+         doc.text(15,90,   'CARGO GESTION:');
+         doc.text(115,90,  'CARGO GESTION:');
+
+         doc.text(75,90,   '{{recibo.netocge}}');
+         doc.text(175,90,  '{{recibo.netocge}}');
+
+         doc.text(15,95,   'DESCUENTO:');
+         doc.text(115,95,  'DESCUENTO:');
+
+         doc.text(75,95,   '{{recibo.desctot}}');
+         doc.text(175,95,  '{{recibo.desctot}}');
+
+         doc.text(15,100,   'TOTAL:');
+         doc.text(115,100,  'TOTAL:');
+
+         doc.text(75,100,   '{{recibo.total}}');
+         doc.text(175,100,  '{{recibo.total}}');
+
+         doc.text(15,110,   'PROXIMA CUOTA:');
+         doc.text(115,110,  'PROXIMA CUOTA:');
+
+         doc.text(55,110,   '0275634-02');
+         doc.text(155,110,  '0275634-02');
+
+         doc.text(15,115,   'VENCIMIENTO:');
+         doc.text(115,115,  'VENCIMIENTO:');
+
+         doc.text(55,115,   '24/07/2014');
+         doc.text(155,115,  '24/07/2014');
+
+         doc.setFontSize(8);
+         doc.text(10,120,   'MUY IMPORTANTE: TENGA EN CUENTA QUE VENCIDA');
+         doc.text(110,120,  'MUY IMPORTANTE: TENGA EN CUENTA QUE VENCIDA');
+
+         doc.text(10,123,   'LA FECHA DE PAGO, SE ABONARAN INTERESES');
+         doc.text(110,123,  'LA FECHA DE PAGO, SE ABONARAN INTERESES');
+
+         doc.text(10,126,   'PUNITORIOS Y GASTOS');
+         doc.text(110,126,  'PUNITORIOS Y GASTOS');
+
+         doc.setFontSize(8);
+         doc.text(10,135,'Talon para el comercio');
+         doc.text(110,135,'Talon para el cliente');
+
+         doc.setFontSize(15);
+
+         // Output as Data URI
+         var string = doc.output('datauristring');
+         $('.preview-pane').attr('src', string);               
+
+      }
+
+   </script>
+   
+   
+{% endblock %}
+

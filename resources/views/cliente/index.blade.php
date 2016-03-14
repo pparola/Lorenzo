@@ -2,11 +2,11 @@
 
 @section('content')
 
-	@if(Session::has('mensaje'))
-		<div class="alert alert-success">
-			<p>{{ Session::get('mensaje') }}</p>
-		</div>
-	@endif
+    @if(Session::has('mensaje'))
+        <div class="alert alert-success">
+            <p>{{ Session::get('mensaje') }}</p>
+        </div>
+    @endif
 
     <div class="row">
         <div class="col-md-8 col-md-offset-2">

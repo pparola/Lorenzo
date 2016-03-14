@@ -18,7 +18,7 @@ class Detalle extends Migration {
 			$table->engine = 'MyISAM';
 			$table->increments('id');
 			$table->integer('idmovimiento');
-			$table->date('idarticulo');
+			$table->integer('idarticulo');
 			$table->decimal('peso',12,2);
 			$table->decimal('precio',12,2);
 

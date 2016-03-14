@@ -20,7 +20,7 @@ class Movimiento extends Model {
 	 */
 	protected $fillable = [ 'tipo', 
 							'fecha', 
-							'id_cliente', 
+							'idcliente', 
 							'total' , 
 							'descripcion' ];
 

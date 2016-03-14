@@ -4,10 +4,12 @@ use Facturacion\Http\Requests;
 use Facturacion\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Facturacion\Http\Requests\createfacturaventaRequest;
 
 use Facturacion\Cliente;
 use Facturacion\Articulo;
 use Facturacion\Movimiento;
+use Facturacion\Detalle;
 
 class MovimientoController extends Controller {
 
@@ -40,9 +42,31 @@ class MovimientoController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function storeFacturaVenta(createfacturaventaRequest $request)
 	{
-		//
+		$movimiento = Movimiento::create(
+		[
+			'tipo'			=> 'VF',
+			'fecha' 		=> $request->get('fecha'),
+			'idcliente' 	=> intval($request->get('idcliente')),
+			'descripcion'	=> strtoupper($request->get('descripcion')),
+			'total'			=> $request->get('totalgeneral')
+		]);
+
+		$aidarticulo 	= $request->get('idarticulo');
+		$apeso		 	= $request->get('cantidad');
+		$aprecio	 	= $request->get('precio');
+
+		for($i=0; $i<count($aidarticulo); $i++){
+			Detalle::create([
+				'idmovimiento' 	=> $movimiento->id,
+				'idarticulo' 	=> $aidarticulo[$i],
+				'peso'			=> $apeso[$i],
+				'precio'		=> $aprecio[$i]
+			]);
+		}
+
+		return redirect('/')->with('mensaje', 'Se agrego la factura de venta correctamente');
 	}
 
 	/**
