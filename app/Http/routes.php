@@ -12,7 +12,7 @@
 */
 
 Route::get(		'/', 							'WelcomeController@index' 		);
-Route::get(		'home', 						'HomeController@index'			);
+Route::get(		'home', 						'MovimientoController@index'	);
 
 Route::get(		'repartos', 					'RepartoController@index'		);
 Route::get(		'repartos/create', 				'RepartoController@create'		);
@@ -38,7 +38,16 @@ Route::get(		'clientes/delete/{id}',			'ClienteController@destroy'		);
 Route::get(		'createfacturaventa',			'MovimientoController@createFacturaVenta');
 Route::post(	'createfacturaventa',			'MovimientoController@storeFacturaVenta');
 
-Route::controllers([ 
-	'auth' => 'Auth\AuthController', 
-	'password' => 'Auth\PasswordController',
+Route::get(		'createpagoventa',				'MovimientoController@createPagoVenta');
+Route::post(	'createpagoventa',				'MovimientoController@storePagoVenta');
+
+Route::get(		'createcreditoventa',			'MovimientoController@createCreditoVenta');
+Route::post(	'createcreditoventa',			'MovimientoController@storeCreditoVenta');
+
+Route::get(		'createdebitoventa',			'MovimientoController@createDebitoVenta');
+Route::post(	'createdebitoventa',			'MovimientoController@storeDebitoVenta');
+
+Route::controllers([
+	'auth' => 'Auth\AuthController',
+	//'password' => 'Auth\PasswordController',
 ]);

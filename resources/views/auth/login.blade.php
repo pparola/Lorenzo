@@ -82,7 +82,7 @@
 										Ingresar
 									</button>
 
-									<a href="/password/email">Olvide mi password?</a>
+									<a href="">Olvide mi password?</a>
 								</div>
 							</div>
 						</form>

@@ -42,7 +42,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{  url('home') }} ">FACTURACION</a>
+                <a class="navbar-brand" href="{{  url('home') }} "> {{ env('EMPRESA','APX Consultores') }}</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -74,11 +74,9 @@
                         <li>
                             <a href=""><i class="fa fa-table fa-fw"></i>Archivos<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-
                                 <li>
                                     <a href="{{ url('articulos') }}">Articulos</a>
                                 </li>
-
 						    	<li>
 						    		<a href="{{ url('clientes') }}">Clientes</a>
 					    		</li>
@@ -92,11 +90,20 @@
 
 
                         <li>
-                            <a href=""><i class="fa fa-edit fa-fw"></i>Movimientos<span class="fa arrow"></span></a>
+                            <a href=""><i class="fa fa-edit fa-fw"></i>Ventas<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
 
                                 <li>
-                                    <a href="{{ url('createfacturaventa') }}">Factura de Venta</a>
+                                    <a href="{{ url('createfacturaventa') }}">Factura</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('createpagoventa') }}">Pago</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('createcreditoventa') }}">Nota de Credito(Yo debo)</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('createdebitoventa') }}">Nota de Debito(Me deben)</a>
                                 </li>
 
 

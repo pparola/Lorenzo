@@ -25,5 +25,11 @@ class Movimiento extends Model {
 							'descripcion' ];
 
 
+	public function scopeBfecha ($query, $fecha)
+	{
+		$query->where("fecha", "=", "$fecha" );
+	}
+
+
 }
 

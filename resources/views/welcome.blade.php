@@ -41,7 +41,7 @@
 				<div class="title">Apx Sistemas</div>
 				<div class="quote">Sistema de Facturacion y Cuentas Corrientes</div>
 				<div class="quote">
-					<a href="{{ url('/home') }}">Ingreso al sistema</a>
+					<a href="{{ url('home') }}">Ingreso al sistema</a>
 				</div>
 			</div>
 		</div>

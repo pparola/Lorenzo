@@ -81,7 +81,7 @@
 				</div>
 			@endif
 
-			<form  id="myform" class="form-horizontal" role="form" method="POST" action="{{  url('createfacturaventa')  }} >
+			<form  class="form-horizontal" role="form" method="POST" action="{{  url('createfacturaventa') }}" >
 
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
