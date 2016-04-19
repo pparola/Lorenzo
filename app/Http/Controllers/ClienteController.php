@@ -53,16 +53,16 @@ class ClienteController extends Controller {
 			[
 				'codigo' 	=> strtoupper( $request->get('codigo')),
 				'nombre' 	=> strtoupper( $request->get('nombre')),
-				'direccion' => strtoupper( $request->get('direccion')),
+				'direccion'     => strtoupper( $request->get('direccion')),
 				'localidad'	=> strtoupper( $request->get('localidad')),
-				'codpos'    => strtoupper( $request->get('codpos')),
-				'telefono'  => strtoupper( $request->get('telefono')),
+				'codpos'        => strtoupper( $request->get('codpos')),
+				'telefono'      => strtoupper( $request->get('telefono')),
 				'tipiva' 	=> strtoupper( $request->get('tipiva')),
 				'cuit' 		=> strtoupper( $request->get('cuit')),
-				'idreparto' => strtoupper( $request->get('idreparto')),
+				'reparto_id'    => strtoupper( $request->get('reparto_id')),
 			]
 		);
-		return redirect('/cliente')->with('mensaje', 'Se agrego el cliente correctamente');
+		return redirect('/clientes')->with('mensaje', 'Se agrego el cliente correctamente');
 	}
 
 	/**
@@ -99,13 +99,13 @@ class ClienteController extends Controller {
 	{
 		$cliente = Cliente::find($id);
 		$cliente->nombre 		= strtoupper( $request->get('nombre')) ;
-		$cliente->direccion 	= strtoupper( $request->get('direccion')) ;
-		$cliente->localidad 	= strtoupper( $request->get('localidad')) ;
+		$cliente->direccion             = strtoupper( $request->get('direccion')) ;
+		$cliente->localidad             = strtoupper( $request->get('localidad')) ;
 		$cliente->codpos 		= strtoupper( $request->get('codpos')) ;
 		$cliente->telefono 		= strtoupper( $request->get('telefono')) ;
 		$cliente->tipiva 		= strtoupper( $request->get('tipiva')) ;
 		$cliente->cuit  		= strtoupper( $request->get('cuit')) ;
-		$cliente->idreparto		= strtoupper( $request->get('idreparto')) ;
+		$cliente->reparto_id		= strtoupper( $request->get('reparto_id')) ;
 
 		$cliente->save();
 
@@ -121,7 +121,7 @@ class ClienteController extends Controller {
 	public function destroy($id)
 	{
 
-		$movimientos = Movimiento::where('idcliente', '=', $id)->get();
+		$movimientos = Movimiento::where('cliente_id', '=', $id)->get();
 
 		if( sizeof($movimientos) === 0){
 			Cliente::destroy($id);

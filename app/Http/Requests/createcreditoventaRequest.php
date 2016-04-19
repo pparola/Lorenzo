@@ -22,7 +22,8 @@ class createcreditoventaRequest extends Request {
 	public function rules()
 	{
 		$reglas = array(
-			'idcliente' 	=> 'exists:clientes,id',
+			'tipo_id' 	=> 'exists:tipos,id',
+			'cliente_id' 	=> 'exists:clientes,id',
 			'fecha' 		=> 'required',
 			'descripcion' 	=> 'required',
 			'importe'		=> 'required|numeric|min:0.01',

@@ -22,9 +22,9 @@ class EditClienteRequest extends Request {
 	public function rules()
 	{
 		return [
-			'nombre' 	=> 'required|unique:clientes',
+			'nombre' 	=> 'required',
 			'tipiva' 	=> 'required',
-			'idreparto' => 'exists:repartos,id',
+			'reparto_id'    => 'exists:repartos,id',
 		];
 	}
 

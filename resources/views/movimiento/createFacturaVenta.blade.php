@@ -90,7 +90,7 @@
 					<label class="col-md-1 control-label">Cliente</label>
 					<div class="col-md-6">
 
-						<select class="form-control" name="idcliente">
+						<select class="form-control" name="cliente_id">
 							<option value="-1">Seleccione un Cliente</option>
 							@foreach ($clientes as $cliente)
 								<option value="{{ $cliente->id }}">{{ $cliente->nombre }}-{{ $cliente->codigo }}</option>

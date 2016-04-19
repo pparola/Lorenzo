@@ -1,35 +1,42 @@
-<?php namespace Facturacion;
+<?php
+
+namespace Facturacion;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Movimiento extends Model {
 
-	public $timestamps = false;
+    public $timestamps = false;
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'movimientos';
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'movimientos';
 
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array
-	 */
-	protected $fillable = [ 'tipo', 
-							'fecha', 
-							'idcliente', 
-							'total' , 
-							'descripcion' ];
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [ 'tipo',
+        'fecha',
+        'cliente_id',
+        'total',
+        'descripcion'];
 
+    public function scopeBfecha($query, $fecha) {
+        $query->where("fecha", "=", "$fecha");
+    }
 
-	public function scopeBfecha ($query, $fecha)
-	{
-		$query->where("fecha", "=", "$fecha" );
-	}
-
-
+    public function cliente(){
+        return $this->belongsTo('Facturacion\Cliente');
+    }
+    
+    public function tipo(){
+        return $this->belongsTo('Facturacion\Tipo');
+    }
+        
 }
 

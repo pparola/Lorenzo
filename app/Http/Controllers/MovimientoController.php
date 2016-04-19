@@ -24,11 +24,8 @@ class MovimientoController extends Controller {
 
 	public function index()
 	{
-		$datos = array();
-		$movimientos = Movimiento::bfecha(date('Y-m-d')) ;
-
-
-		return view('Movimiento.index', $movimientos);
+		$movimientos = Movimiento::orderBy('id','desc')->paginate(10) ;
+		return view('Movimiento.index',array( 'movimientos' => $movimientos) );
 	}
 
 
@@ -46,35 +43,35 @@ class MovimientoController extends Controller {
 	{
 		$movimiento = Movimiento::create(
 		[
-			'tipo'			=> 'VF',
-			'fecha' 		=> $request->get('fecha'),
-			'idcliente' 	=> intval($request->get('idcliente')),
+			'tipo_id'       => 'VF',
+			'fecha' 	=> $request->get('fecha'),
+			'cliente_id' 	=> intval($request->get('cliente_id')),
 			'descripcion'	=> strtoupper($request->get('descripcion')),
-			'total'			=> $request->get('totalgeneral')
+			'total'		=> $request->get('totalgeneral')
 		]);
 
 		$aidarticulo 	= $request->get('idarticulo');
-		$apeso		 	= $request->get('cantidad');
-		$aprecio	 	= $request->get('precio');
+		$apeso		= $request->get('cantidad');
+		$aprecio	= $request->get('precio');
 
 		for($i=0; $i<count($aidarticulo); $i++){
 			Detalle::create([
 				'idmovimiento' 	=> $movimiento->id,
 				'idarticulo' 	=> $aidarticulo[$i],
-				'peso'			=> $apeso[$i],
-				'precio'		=> $aprecio[$i]
+				'peso'		=> $apeso[$i],
+				'precio'	=> $aprecio[$i]
 			]);
 		}
 
 		// generar la impresion
-		$cliente = Cliente::find($movimiento->idcliente);
+		$cliente = Cliente::find($movimiento->cliente_id);
 
 
 		$detalles = '';
 
 
 		$detalles = $detalles . str_pad( 'Codigo'		, 10, ' ')		. '     ';
-		$detalles = $detalles . str_pad( 'Descripcion'	, 32, ' ')		. '     ';
+		$detalles = $detalles . str_pad( 'Descripcion'          , 32, ' ')		. '     ';
 		$detalles = $detalles . str_pad( 'Peso' 		, 15, ' ',STR_PAD_LEFT). '	    ';
 		$detalles = $detalles . str_pad( 'Precio'		, 15, ' ',STR_PAD_LEFT). '	    ';
 		$detalles = $detalles . str_pad( 'Total'		, 15, ' ',STR_PAD_LEFT).'\n';
@@ -111,18 +108,18 @@ class MovimientoController extends Controller {
 
 
 
-	public function storePagoVenta(createfacturaventaRequest $request)
+	public function storePagoVenta(createpagoventaRequest $request)
 	{
 		$movimiento = Movimiento::create(
 		[
-			'tipo'			=> 'VP',
-			'fecha' 		=> $request->get('fecha'),
-			'idcliente' 	=> intval($request->get('idcliente')),
+			'tipo_id'	=> 'VP',
+			'fecha' 	=> $request->get('fecha'),
+			'cliente_id' 	=> intval($request->get('cliente_id')),
 			'descripcion'	=> strtoupper($request->get('descripcion')),
-			'total'			=> $request->get('importe')
+			'total'		=> $request->get('importe')
 		]);
 
-		$cliente = Cliente::find(intval($request->get('idcliente')));
+		$cliente = Cliente::find(intval($request->get('cliente_id')));
 
 		$detalles = '';
 		$detalles = $detalles . 'Recibi del Sr./a ' .$cliente->nombre  .'\n';
@@ -130,9 +127,9 @@ class MovimientoController extends Controller {
 		$detalles = $detalles . 'en concepto de pago a cuenta' .'\n';
 
 		return view('Movimiento.CreatePagoVentaImpresion',[
-			'cliente' 		=> $cliente,
+			'cliente' 	=> $cliente,
 			'movimiento' 	=> $movimiento,
-			'detalles' 		=> $detalles,
+			'detalles' 	=> $detalles,
 		]);
 	}
 
@@ -150,14 +147,14 @@ class MovimientoController extends Controller {
 	{
 		$movimiento = Movimiento::create(
 		[
-			'tipo'			=> 'VC',
-			'fecha' 		=> $request->get('fecha'),
-			'idcliente' 	=> intval($request->get('idcliente')),
+			'tipo_id'	=> 'VC',
+			'fecha' 	=> $request->get('fecha'),
+			'cliente_id' 	=> intval($request->get('cliente_id')),
 			'descripcion'	=> strtoupper($request->get('descripcion')),
-			'total'			=> $request->get('importe')
+			'total'		=> $request->get('importe')
 		]);
 
-		$cliente = Cliente::find(intval($request->get('idcliente')));
+		$cliente = Cliente::find(intval($request->get('cliente_id')));
 
 		$detalles = '';
 		$detalles = $detalles . 'Recibi del Sr./a ' . env('EMPRESA', 'Apx Consultores')  .'\n';
@@ -165,9 +162,9 @@ class MovimientoController extends Controller {
 		$detalles = $detalles . 'en concepto de '.  strtoupper($request->get('descripcion')) .'\n';
 
 		return view('Movimiento.CreateCreditoVentaImpresion',[
-			'cliente' 		=> $cliente,
+			'cliente_id' 	=> $cliente,
 			'movimiento' 	=> $movimiento,
-			'detalles' 		=> $detalles,
+			'detalles' 	=> $detalles,
 		]);
 	}
 
@@ -184,14 +181,14 @@ class MovimientoController extends Controller {
 	{
 		$movimiento = Movimiento::create(
 		[
-			'tipo'			=> 'VD',
-			'fecha' 		=> $request->get('fecha'),
-			'idcliente' 	=> intval($request->get('idcliente')),
+			'tipo_id'	=> 'VD',
+			'fecha' 	=> $request->get('fecha'),
+			'cliente_id' 	=> intval($request->get('cliente_id')),
 			'descripcion'	=> strtoupper($request->get('descripcion')),
-			'total'			=> $request->get('importe')
+			'total'		=> $request->get('importe')
 		]);
 
-		$cliente = Cliente::find(intval($request->get('idcliente')));
+		$cliente = Cliente::find(intval($request->get('cliente_id')));
 
 		$detalles = '';
 		$detalles = $detalles . 'Recibi del Sr./a ' .$cliente->nombre  .'\n';
@@ -200,7 +197,7 @@ class MovimientoController extends Controller {
 
 		return view('Movimiento.CreateDebitoVentaImpresion',[
 			'cliente' 		=> $cliente,
-			'movimiento' 	=> $movimiento,
+			'movimiento'            => $movimiento,
 			'detalles' 		=> $detalles,
 		]);
 	}

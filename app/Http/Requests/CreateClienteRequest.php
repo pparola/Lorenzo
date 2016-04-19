@@ -25,7 +25,7 @@ class CreateClienteRequest extends Request {
 			'codigo' => 'required|unique:clientes|numeric',
 			'nombre' 	=> 'required|unique:clientes',
 			'tipiva' 	=> 'required',
-			'idreparto' => 'exists:repartos,id',
+                        'reparto_id'    => 'exists:repartos,id',
 		];
 	}
 

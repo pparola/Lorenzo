@@ -22,11 +22,11 @@ class createfacturaventaRequest extends Request {
 	public function rules()
 	{
 		$reglas = array(
-			'idcliente' => 'exists:clientes,id',
+			'cliente_id'    => 'exists:clientes,id',
 			'fecha' 	=> 'required'
 		);
 
-		$aidarticulo 	= $this->request->get('idarticulo');
+		$aidarticulo            = $this->request->get('idarticulo');
 		$apeso		 	= $this->request->get('cantidad');
 		$aprecio	 	= $this->request->get('precio');
 
