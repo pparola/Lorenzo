@@ -18,13 +18,15 @@
 <script type="text/javascript" src="{{ asset('assets/bower_components/jspdf/jspdf.PLUGINTEMPLATE.js') }}"></script>
 
 <script>
-    $(function() {
-        ejecutar();
-    });
+$(function () {
+ejecutar();
+});
 </script>
 
 <div class="row">
-    <iframe id="preview-pane" class="preview-pane col-md-12" height="550" frameborder="1"> A visualizar </iframe>
+    <iframe id="preview-pane" class="preview-pane col-md-12" height="540" frameborder="1"> A visualizar </iframe>
+    <a href="{{url('/home')}}" class="btn btn-primary" >Volver a Movimientos</a>
+
 </div>
 
 <script>
@@ -49,7 +51,7 @@
         doc.setFontSize(14);
         doc.text(150, 20, 'Fecha:' + '{{ $movimiento->fecha }}');
         doc.text(10, 10, '{{ env('EMPRESA') }}');
-        doc.text(10, 20, 'Resumen de Nota de Debito de Venta');
+        doc.text(10, 20, '{{ $tipo->descripcion }}');
         doc.setFontSize(8);
         doc.text(10, 40, 'Documento No valido como Factura');
 
@@ -59,17 +61,13 @@
         doc.text(15, 50, 'Cliente:     ' + '{{ $cliente->codigo }}' + ' - ' + '{{ $cliente->nombre }}');
         doc.text(15, 53, 'Descripcion: ' + '{{ $movimiento->descripcion }}');
 
-        doc.setFontSize(12);
+        doc.setFontSize(8);
 
         doc.text(15, 60, '{{ $detalles }}');
 
-
-        doc.text(15, 100, '..............................................');
-        doc.text(15, 105, '         Aclaracion y Firma');
-
-
         //cuadrado de pie
         doc.rect(5, 120, 200, 10, 'fill');
+
         doc.setFontSize(10);
         doc.text(170, 125, 'Total: ' + '{{ number_format($movimiento->total,2) }}');
 

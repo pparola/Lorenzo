@@ -1,27 +1,27 @@
-<?php namespace Facturacion;
+<?php
+
+namespace Facturacion;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Detalle extends Model {
 
-	public $timestamps = false;
+    public $timestamps = false;
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'detalles';
+    protected $table = 'detalles';
 
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array
-	 */
-	protected $fillable = [ 'idmovimiento',
-							'idarticulo',
-							'peso' ,
-							'precio' ];
+    protected $fillable = array(
+       'idmovimiento',
+       'idarticulo',
+       'peso',
+       'precio');
 
+    public function movimiento() {
+        return $this->belongsTo('Facturacion\Movimiento','idmovimiento');
+    }
 
+    public function articulo(){
+        return $this->belongsTo('Facturacion\Articulo', 'idarticulo');
+    }
+    
 }

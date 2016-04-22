@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/xampp/htdocs/Lorenzo/resources/views/movimiento/index.blade.php</file>
+            <file>file:/C:/xampp/htdocs/Lorenzo/app/Http/Requests/createMovimientoRequest.php</file>
+            <file>file:/C:/xampp/htdocs/Lorenzo/resources/views/movimiento/Impresion.blade.php</file>
+            <file>file:/C:/xampp/htdocs/Lorenzo/app/Movimiento.php</file>
+            <file>file:/C:/xampp/htdocs/Lorenzo/app/Http/routes.php</file>
+            <file>file:/C:/xampp/htdocs/Lorenzo/resources/views/movimiento/createMovimientoSinArticulo.blade.php</file>
+            <file>file:/C:/xampp/htdocs/Lorenzo/resources/views/movimiento/CreateMovimientoConArticulo.blade.php</file>
+            <file>file:/C:/xampp/htdocs/Lorenzo/app/Http/Controllers/MovimientoController.php</file>
+        </group>
+    </open-files>
 </project-private>

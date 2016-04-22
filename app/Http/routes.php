@@ -35,17 +35,10 @@ Route::get(	'clientes/edit/{id}', 			'ClienteController@edit'		);
 Route::post(	'clientes/edit/{id}', 			'ClienteController@update'		);
 Route::get(	'clientes/delete/{id}',			'ClienteController@destroy'		);
 
-Route::get(	'createfacturaventa',			'MovimientoController@createFacturaVenta');
-Route::post(	'createfacturaventa',			'MovimientoController@storeFacturaVenta');
-
-Route::get(	'createpagoventa',			'MovimientoController@createPagoVenta');
-Route::post(	'createpagoventa',			'MovimientoController@storePagoVenta');
-
-Route::get(	'createcreditoventa',			'MovimientoController@createCreditoVenta');
-Route::post(	'createcreditoventa',			'MovimientoController@storeCreditoVenta');
-
-Route::get(	'createdebitoventa',			'MovimientoController@createDebitoVenta');
-Route::post(	'createdebitoventa',			'MovimientoController@storeDebitoVenta');
+Route::get(	'movimiento/create/{idTipo}',           'MovimientoController@create'           );
+Route::post(	'movimiento/create',                    'MovimientoController@store'            );
+Route::get(	'movimiento/delete/{id}',               'MovimientoController@show'             );
+Route::post(	'movimiento/delete',                    'MovimientoController@delete'           );
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

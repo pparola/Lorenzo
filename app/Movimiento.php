@@ -20,23 +20,28 @@ class Movimiento extends Model {
      *
      * @var array
      */
-    protected $fillable = [ 'tipo',
-        'fecha',
-        'cliente_id',
-        'total',
-        'descripcion'];
+    protected $fillable = array(
+       'tipo_id',
+       'fecha',
+       'cliente_id',
+       'total',
+       'descripcion'
+    );
 
     public function scopeBfecha($query, $fecha) {
         $query->where("fecha", "=", "$fecha");
     }
 
-    public function cliente(){
+    public function cliente() {
         return $this->belongsTo('Facturacion\Cliente');
     }
-    
-    public function tipo(){
+
+    public function tipo() {
         return $this->belongsTo('Facturacion\Tipo');
     }
-        
-}
 
+    public function detalles(){
+        return $this->hasMany('Facturacion\Detalle','idmovimiento');
+    }
+    
+}
