@@ -42,5 +42,6 @@ Route::post(	'movimiento/delete',                    'MovimientoController@delet
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
+	'reporte' => 'ReporteController',
 	//'password' => 'Auth\PasswordController',
 ]);
